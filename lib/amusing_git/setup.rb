@@ -29,17 +29,15 @@ module AmusingGit
     end
 
     def write_config
-      File.open(config_file, "w") do |f|
+      File.open("#{ENV['HOME']}/.amusing_git/config", "w") do |f|
         f.write(JSON.pretty_generate(config))
       end
     end
 
     def copy_messages
-      File.open("#{ENV['HOME']}/.amusing_git/default_messages", 'w').write(AmusingGit::MessageSeeder.seed)
-    end
-
-    def config_file
-      File.new("#{ENV['HOME']}/.amusing_git/config", "w")
+      File.open("#{ENV['HOME']}/.amusing_git/default_messages", 'w') do |f|
+        f.write(AmusingGit::MessageSeeder.seed)
+      end
     end
 
     def config
