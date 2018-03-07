@@ -21,6 +21,16 @@ Commands:
   amusing_git stop            # Stop amusing for the current git repository
 ```
 
+Install the amusing_git gem using the above command. Go to your git repository and type
+```bash
+amusing_git start
+```
+After the above command whenever you pull or push the code to remote, amusing_git will amuse you some interesting quotes.
+To stop amusing_git for any git repository just type below command.
+```bash
+amusing_git stop
+```
+
 LICENSE
 -------
 
