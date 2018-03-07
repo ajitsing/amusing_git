@@ -10,6 +10,7 @@ module AmusingGit
 
     def create!
       `touch #{@hook_file}`
+      `chmod +x #{@hook_file}`
     end
 
     def configure_amusing_git!
