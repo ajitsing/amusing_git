@@ -18,13 +18,13 @@ module AmusingGit
       print_success "Setup is completed!\n"
     end
 
+    def setup_exists?
+      File.exists? "#{ENV['HOME']}/.amusing_git"
+    end
+
     private
     def create_amusing_git_dir
       `mkdir #{ENV['HOME']}/.amusing_git`
-    end
-
-    def setup_exists?
-      File.exists? "#{ENV['HOME']}/.amusing_git"
     end
 
     def write_config
