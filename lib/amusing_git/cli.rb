@@ -18,7 +18,13 @@ module AmusingGit
       amuser.stop_amusing Dir.pwd
     end
 
-    desc "amuse", "Print random messsage from configured messages"
+    desc "amuse", "Print random messsage from configured messages, use `amusing_git help amuse` to know how to add your own messages"
+    long_desc <<-LONGDESC
+      `amusing_git amuse` will print a random message from the configured messages
+
+      You can modify the configured messages. All the amusing_git config is present
+      inside $HOME/.amusing_git directory
+    LONGDESC
     def amuse
       maybe_setup_amusing_git
       amuser.amuse
