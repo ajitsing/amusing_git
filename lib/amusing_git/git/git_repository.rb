@@ -15,15 +15,25 @@ module AmusingGit
     end
 
     def configure_amusing_git!
-      hooks = ["#{@dir}/.git/hooks/pre-push", "#{@dir}/.git/hooks/pre-rebase"].map { |h| AmusingGit::GitHook.new h}
       hooks.each do |hook|
         hook.create! unless hook.exists?
         hook.configure_amusing_git! unless hook.amusing?
       end
     end
 
+    def remove_amusing_git!
+      hooks.each do |hook|
+        hook.remove_amusing_git! if hook.amusing?
+      end
+    end
+
     def self.git_repo? dir
       File.exists? "#{dir}/.git"
+    end
+
+    private
+    def hooks
+      ["#{@dir}/.git/hooks/pre-push", "#{@dir}/.git/hooks/pre-rebase"].map { |h| AmusingGit::GitHook.new h}
     end
   end
 end

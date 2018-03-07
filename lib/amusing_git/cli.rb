@@ -13,7 +13,7 @@ module AmusingGit
 
     desc "stop", "Stop amusing for the current git repository"
     def stop
-      print_success "Done :)\n"
+      amuser.stop_amusing Dir.pwd
     end
 
     desc "amuse", "Print random messsage from configured messages"

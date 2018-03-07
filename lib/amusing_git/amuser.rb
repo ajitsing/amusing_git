@@ -22,13 +22,22 @@ module AmusingGit
       end
 
       git_repository = AmusingGit::GitRepository.new dir
+      git_repository.create_hooks! unless git_repository.has_hooks?
+      git_repository.configure_amusing_git!
 
-      unless git_repository.has_hooks?
-        print_info "Creating git hooks...\n"
-        git_repository.create_hooks!
+      print_success "Done :)\n"
+    end
+
+    def stop_amusing(dir)
+      unless AmusingGit::GitRepository.git_repo? dir
+        print_error "#{dir} is not a git repository, halting...\n"
+        return
       end
 
-      git_repository.configure_amusing_git!
+      git_repository = AmusingGit::GitRepository.new dir
+      return unless git_repository.has_hooks?
+      git_repository.remove_amusing_git!
+
       print_success "Done :)\n"
     end
 
