@@ -1,33 +1,30 @@
 require 'thor'
-require 'json'
+require_relative './setup'
+require_relative './amuser'
 
 module AmusingGit
   class CLI < Thor
+    include AmusingGit::PrettyPrinter
+
     desc "start", "Start amusing for the current git repository"
     def start
+      print_success "Done :)\n"
     end
 
     desc "stop", "Stop amusing for the current git repository"
     def stop
+      print_success "Done :)\n"
+    end
+
+    desc "amuse", "Print random messsage from configured messages"
+    def amuse
+      amuser = AmusingGit::Amuser.new
+      amuser.amuse
     end
 
     desc "setup", "Setup amusing git"
     def setup
-      return if File.exists? "#{ENV['HOME']}/.amusing_git"
-
-      config = {
-        "messages" => "#{ENV['HOME']}/.amusing_git/default_messages"
-      }
-
-      `mkdir #{ENV['HOME']}/.amusing_git`
-
-      config_file = File.new("#{ENV['HOME']}/.amusing_git/config", "w")
-
-      File.open(config_file, "w") do |f|
-        f.write(JSON.pretty_generate(config))
-      end
-
-      `cp ../lib/amusing_git/default_messages #{ENV['HOME']}/.amusing_git/default_messages`
+      AmusingGit::Setup.new.start
     end
   end
 end
