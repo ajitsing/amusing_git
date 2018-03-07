@@ -1,5 +1,6 @@
 require 'json'
 require_relative './pretty_printer'
+require_relative './message_seeder'
 
 module AmusingGit
   class Setup
@@ -34,7 +35,7 @@ module AmusingGit
     end
 
     def copy_messages
-      `cp ../lib/amusing_git/default_messages #{ENV['HOME']}/.amusing_git/default_messages`
+      File.open("#{ENV['HOME']}/.amusing_git/default_messages", 'w').write(AmusingGit::MessageSeeder.seed)
     end
 
     def config_file

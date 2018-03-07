@@ -1,3 +1,7 @@
+module AmusingGit
+  class MessageSeeder
+    def self.seed
+      <<-MESSAGES
 Why does the computer programmer ignore the warning on the cigarette carton? Because he's seen so many warnings he only cares about errors.
 What does the computer programmer say to his fellow programmer when he asks him to borrow $1000? I'll give you 1024 to make it even.
 How does a network administrator nerd greet people who come to his house? Welcome to 127.0.0.1.
@@ -34,3 +38,7 @@ Beware of bugs in the above code; I have only proved it correct, not tried it.
 I don't care if it works on your machine! We are not shipping your machine!
 Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.
 Measuring programming progress by lines of code is like measuring aircraft building progress by weight.
+      MESSAGES
+    end
+  end
+end
