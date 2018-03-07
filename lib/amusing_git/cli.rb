@@ -8,7 +8,7 @@ module AmusingGit
 
     desc "start", "Start amusing for the current git repository"
     def start
-      print_success "Done :)\n"
+      amuser.start_amusing Dir.pwd
     end
 
     desc "stop", "Stop amusing for the current git repository"
@@ -18,13 +18,21 @@ module AmusingGit
 
     desc "amuse", "Print random messsage from configured messages"
     def amuse
-      amuser = AmusingGit::Amuser.new
       amuser.amuse
     end
 
     desc "setup", "Setup amusing git"
     def setup
-      AmusingGit::Setup.new.start
+      amusing_git_setup.start
+    end
+
+    private
+    def amuser
+      AmusingGit::Amuser.new
+    end
+
+    def amusing_git_setup
+      AmusingGit::Setup.new
     end
   end
 end
