@@ -2,8 +2,9 @@ require_relative './git_hook'
 
 module AmusingGit
   class GitRepository
-    def initialize(dir)
+    def initialize(dir, config)
       @dir = dir
+      @hooks = config.hooks
     end
 
     def has_hooks?
@@ -33,7 +34,7 @@ module AmusingGit
 
     private
     def hooks
-      ["#{@dir}/.git/hooks/pre-push", "#{@dir}/.git/hooks/pre-rebase"].map { |h| AmusingGit::GitHook.new h}
+      @hooks.map { |hook_name| "#{@dir}/.git/hooks/#{hook_name}" }.map { |h| AmusingGit::GitHook.new h}
     end
   end
 end

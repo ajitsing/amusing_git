@@ -42,7 +42,8 @@ module AmusingGit
 
     def config
       {
-        "messages" => "#{ENV['HOME']}/.amusing_git/default_messages"
+        "messages" => "#{ENV['HOME']}/.amusing_git/default_messages",
+        "hooks" => ["pre-push", "pre-rebase", "post-merge"]
       }
     end
   end

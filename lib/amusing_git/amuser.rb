@@ -1,18 +1,19 @@
 require_relative './pretty_printer'
 require_relative './git/git_repository'
+require_relative './config/config'
 
 module AmusingGit
   class Amuser
     include AmusingGit::PrettyPrinter
 
+    def initialize
+      @config = AmusingGit::Config.new
+    end
+
     def amuse
-      begin
-        msgs = messages
-        print_info(msgs[rand(0..msgs.size-1)] + "\n")
-      rescue
-        print_error "Error reading amusing git config file\n"
-        return
-      end
+      msgs = @config.messages
+      return if msgs.empty?
+      print_info(msgs[rand(0..msgs.size-1)] + "\n")
     end
 
     def start_amusing(dir)
@@ -21,7 +22,7 @@ module AmusingGit
         return
       end
 
-      git_repository = AmusingGit::GitRepository.new dir
+      git_repository = AmusingGit::GitRepository.new dir, @config
       git_repository.create_hooks! unless git_repository.has_hooks?
       git_repository.configure_amusing_git!
 
@@ -39,15 +40,6 @@ module AmusingGit
       git_repository.remove_amusing_git!
 
       print_success "Done :)\n"
-    end
-
-    private
-    def messages
-      File.read(config["messages"]).split("\n")
-    end
-
-    def config
-      JSON.parse(File.read("#{ENV["HOME"]}/.amusing_git/config"))
     end
   end
 end
