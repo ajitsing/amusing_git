@@ -35,7 +35,7 @@ module AmusingGit
         return
       end
 
-      git_repository = AmusingGit::GitRepository.new dir
+      git_repository = AmusingGit::GitRepository.new dir, @config
       return unless git_repository.has_hooks?
       git_repository.remove_amusing_git!
 
