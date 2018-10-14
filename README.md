@@ -1,6 +1,7 @@
 # amusing_git
 Brings fun to the git workflow
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ajitsing/amusing_git/graphs/commit-activity)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT)
 [![Gem Version](https://badge.fury.io/rb/amusing_git.svg)](https://badge.fury.io/rb/amusing_git)
 [![HitCount](http://hits.dwyl.io/ajitsing/amusing_git.svg)](http://hits.dwyl.io/ajitsing/amusing_git)
